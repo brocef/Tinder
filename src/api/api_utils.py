@@ -1,11 +1,9 @@
-# coding=utf-8
-
 from datetime import date, datetime
 from random import random
 from time import sleep
-
-import config
-import tinder_api as api
+import typing
+if typing.TYPE_CHECKING:
+    from src.api.tinder_api import TinderAPI
 
 
 '''
@@ -15,9 +13,8 @@ gender, message count, and their average successRate.
 '''
 
 
-def get_match_info():
+def get_match_info(api: "TinderAPI"):
     matches = api.get_updates()['matches']
-    now = datetime.utcnow()
     match_info = {}
     for match in matches[:len(matches)]:
         try:
@@ -45,11 +42,10 @@ def get_match_info():
     return match_info
 
 
-def get_match_id_by_name(name):
+def get_match_id_by_name(match_info, name):
     '''
     Returns a list_of_ids that have the same name as your input
     '''
-    global match_info
     list_of_ids = []
     for match in match_info:
         if match_info[match]['name'] == name:
@@ -96,28 +92,12 @@ def get_avg_successRate(person):
     return curr_avg / len(photos)
 
 
-def sort_by_value(sortType):
+def sort_by_value(match_info, sortType):
     '''
     Sort options are:
         'age', 'message_count', 'gender'
     '''
-    global match_info
     return sorted(match_info.items(), key=lambda x: x[1][sortType], reverse=True)
-
-
-def see_friends_profiles(name=None):
-    friends = api.see_friends()
-    if name == None:
-        return friends
-    else:
-        result_dict = {}
-        name = name.title()  # upcases first character of each word
-        for friend in friends:
-            if name in friend["name"]:
-                result_dict[friend["name"]] = friend
-        if result_dict == {}:
-            return "No friends by that name"
-        return result_dict
 
 
 def convert_from_datetime(difference):
@@ -136,8 +116,7 @@ def get_last_activity_date(now, ping_time):
     return since
 
 
-def how_long_has_it_been():
-    global match_info
+def how_long_has_it_been(match_info):
     now = datetime.utcnow()
     times = {}
     for person in match_info:
@@ -159,10 +138,3 @@ def pause():
     nap_length = 3 * random()
     print('Napping for %f seconds...' % nap_length)
     sleep(nap_length)
-
-if __name__ == '__main__':
-    if api.authverif() == True:
-        print("Gathering Data on your matches...")
-        match_info = get_match_info()
-    else:
-        print("Something went wrong. You were not authorized.")

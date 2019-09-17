@@ -1,4 +1,4 @@
-import fb_auth_token
+from src.api.auth import fb_auth_token
 
 fb_username = """Your fb username goes here."""
 fb_password = """Your fb password goes here."""
