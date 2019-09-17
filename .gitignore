@@ -6,3 +6,7 @@ __pycache__
 find.py
 *.log
 *.egg-info
+
+# Development environment
+env-*
+.idea/
