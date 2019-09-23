@@ -137,7 +137,7 @@ class TinderAPI:
             data = {
                 "lat": lat,
                 "lon": lon,
-                "force_fetch_resources": True
+                "force_fetch_resources": False
             }
             r = requests.post(url, headers=self.connection.headers, data=json.dumps(data))
             return r.json()

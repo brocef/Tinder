@@ -7,9 +7,7 @@ find.py
 *.log
 *.egg-info
 
-all_recs.json
-teasers.json
-recs.txt
+test_data/
 log.txt
 Your Recommendations/
 
