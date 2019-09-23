@@ -7,6 +7,10 @@ find.py
 *.log
 *.egg-info
 
+all_recs.json
+recs.txt
+log.txt
+
 # Development environment
 env-*
 .idea/
