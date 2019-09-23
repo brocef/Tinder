@@ -8,8 +8,10 @@ find.py
 *.egg-info
 
 all_recs.json
+teasers.json
 recs.txt
 log.txt
+Your Recommendations/
 
 # Development environment
 env-*

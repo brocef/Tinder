@@ -234,6 +234,24 @@ class TinderAPI:
         except requests.exceptions.RequestException as e:
             print("Something went wrong. Could not superlike:", e)
 
+    '''
+    Sample response:
+    
+    {'match': {'_id': '5ac6f6ad0c8b3b6122ccd4cb5d78768166e7e3dc6b90e59f', 'closed': False, 'common_friend_count': 0, 'common_like_count':
+    0, 'created_date': '2019-09-23T20:41:55.895Z', 'dead': False, 'last_activity_date': '2019-09-23T20:41:55.895Z', 'message_count': 0, 'm
+    essages': [], 'participants': ['5d78768166e7e3dc6b90e59f', '5ac6f6ad0c8b3b6122ccd4cb'], 'pending': False, 'is_super_like': False, 'is_
+    boost_match': False, 'is_super_boost_match': False, 'is_fast_match': False, 'is_top_pick': False, 'following': True, 'following_moment
+    s': True}, 'likes_remaining': 100, 'X-Padding': '{*meta*:{*code*:200,*requestId*:*59a45921351e3d43b07028b5*},*response*:{*venue*:{*id*
+    :*412d2800f964a520df0c1fe3*,*name*:*Central Park*,*contact*:{*phone*:*2123106600*,*formattedPhone*:*(212) 310-6600*,*twitter*:*central
+    parknyc*,*instagram*:*centralparknyc*,*facebook*:*37965424481*,*facebookUsername*:*centralparknyc*,*facebookName*:*Central Park*},*loc
+    ation*:{*address*:*59th St to 110th St*,*crossStreet*:*5th Ave to Central Park West*,*lat*:40.78408342593807,*lng*:-73.96485328674316,
+    *postalCode*:*10028*,*cc*:*US*,*city*:*New York*,*state*:*NY*,*country*:*United States*,*formattedAddress*:[*59th St to 110th St (5th
+    Ave to Central Park West)*,*New York, NY 10028*,*United States*]},*canonicalUrl*:*https://foursquare.com/v/central-park/412d2800f964a5
+    20df0c1fe3*,*categories*:[{*id*:*4bf58dd8d48988d163941735*,*name*:*Park*,*pluralName*:*Parks*,*shortName*:*Park*,*icon*:{*prefix*:*htt
+    ps://ss3.4sqi.net/img/categories_v2/parks_outdoors/park_*,*suffix*:*.png*},*primary*:true}],*verified*:true,*stats*:{*checkinsCount*:3
+    64591,*usersCount*:311634,*tipCount*:1583,*visitsCount*:854553},*url*:*http://www.centralparknyc.org*,*likes*:{*count*:17370,*summary*
+    :*17370 Likes*},*rating*:9.8,*ratingColor*'}
+    '''
     def like(self, person_id: str):
         try:
             url = self.build_url('like', person_id)
@@ -288,6 +306,14 @@ class TinderAPI:
             count = r.headers['fast-match-count']
             # image is in the response but its in hex..
             return count
+        except requests.exceptions.RequestException as e:
+            print("Something went wrong. Could not get your fast-match count:", e)
+
+    def fast_match_teasers(self):
+        try:
+            url = self.build_url('v2', 'fast-match', 'teasers')
+            r = requests.get(url, headers=self.connection.headers)
+            return r.json()
         except requests.exceptions.RequestException as e:
             print("Something went wrong. Could not get your fast-match count:", e)
 

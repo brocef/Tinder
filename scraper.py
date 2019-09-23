@@ -5,6 +5,7 @@ import time
 import random
 import logging
 import sys
+import requests
 from src.api.connection import Connection
 from src.api.tinder_api import TinderAPI
 log = logging.getLogger(__name__)
@@ -20,11 +21,33 @@ log.addHandler(file_handler)
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-T', '--token', required=True, dest='api_token')
+    parser.add_argument('-T', '--token', dest='api_token')
     parser.add_argument('-o', '--output', default='all_recs.json', dest='output_filename')
+    parser.add_argument('mode', choices=['scrape', 'build'])
     args = parser.parse_args()
-    cxn = Connection(args.api_token)
-    api = TinderAPI(cxn)
+    if args.mode == 'scrape':
+        cxn = Connection(args.api_token)
+        api = TinderAPI(cxn)
+        scrape(args, api)
+    elif args.mode == 'build':
+        build(args)
+
+
+def build(args):
+    with open(args.output_filename, 'r') as fd:
+        all_recs = json.load(fd)
+    for _id in all_recs:
+        fldr = os.path.join('Your Recommendations', _id)
+        os.makedirs(fldr, exist_ok=True)
+        with open(os.path.join(fldr, 'data.json'), 'w') as fd:
+            json.dump(all_recs[_id], fd)
+            for photo in all_recs[_id]['photos']:
+                with open(os.path.join(fldr, photo['id'])+'.jpeg', 'wb') as photo_fd:
+                    r = requests.get(photo['url'])
+                    photo_fd.write(r.content)
+
+
+def scrape(args, api: TinderAPI):
     if os.path.exists(args.output_filename):
         with open(args.output_filename, 'r') as fd:
             all_results = json.load(fd)
