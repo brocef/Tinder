@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Winder</title>
+    <script src="static/controls.js"></script>
+</head>
+<body>
+<h1>
+    Results
+</h1>
+<div>
+    {% for rec in recommendations %}
+        <p>{{ rec.name }} [<a href="#" role="button" onclick="hide('{{ rec._id }}')">Hide</a>/<a href="#" role="button" onclick="show('{{ rec._id }}')">Show</a>]</p>
+        <div id="{{ rec._id }}_photos" style="display: none">
+        {% for photo in rec.photos %}
+            <p>
+                <img src="{{ photo.processedFiles[1].url }}" />
+            </p>
+        {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+</body>
+</html>
