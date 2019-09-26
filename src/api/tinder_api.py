@@ -42,6 +42,14 @@ class TinderAPI:
     def build_url(self, *path_components: str):
         return self.connection.host + '/'.join(path_components)
 
+    def get_top_picks(self):
+        try:
+            url = self.build_url('v2', 'top-picks', 'preview')
+            r = requests.get(url, headers=self.connection.headers)
+            return r.json()
+        except requests.exceptions.RequestException as e:
+            print("Something went wrong with getting recommendations:", e)
+
     def get_recommendations(self):
         """
         Returns a list of users that you can swipe on
