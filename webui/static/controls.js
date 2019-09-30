@@ -1,9 +1,7 @@
 function show(id) {
-    var e = document.getElementById(id+"_photos");
-    e.style.display = "block";
+    $('#'+id+"_photos").css("display", "block");
 }
 
 function hide(id) {
-    var e = document.getElementById(id+"_photos");
-    e.style.display = "none";
+    $('#'+id+"_photos").css("display", "none");
 }

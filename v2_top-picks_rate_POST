@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE items [
+<!ELEMENT items (item*)>
+<!ATTLIST items burpVersion CDATA "">
+<!ATTLIST items exportTime CDATA "">
+<!ELEMENT item (time, url, host, port, protocol, method, path, extension, request, status, responselength, mimetype, response, comment)>
+<!ELEMENT time (#PCDATA)>
+<!ELEMENT url (#PCDATA)>
+<!ELEMENT host (#PCDATA)>
+<!ATTLIST host ip CDATA "">
+<!ELEMENT port (#PCDATA)>
+<!ELEMENT protocol (#PCDATA)>
+<!ELEMENT method (#PCDATA)>
+<!ELEMENT path (#PCDATA)>
+<!ELEMENT extension (#PCDATA)>
+<!ELEMENT request (#PCDATA)>
+<!ATTLIST request base64 (true|false) "false">
+<!ELEMENT status (#PCDATA)>
+<!ELEMENT responselength (#PCDATA)>
+<!ELEMENT mimetype (#PCDATA)>
+<!ELEMENT response (#PCDATA)>
+<!ATTLIST response base64 (true|false) "false">
+<!ELEMENT comment (#PCDATA)>
+]>
+<items burpVersion="2.1.02" exportTime="Thu Sep 26 17:47:20 EDT 2019">
+  <item>
+    <time>Wed Dec 31 19:00:00 EST 1969</time>
+    <url><![CDATA[https://api.gotinder.com/v2/top-picks/rate]]></url>
+    <host ip="52.85.98.81">api.gotinder.com</host>
+    <port>443</port>
+    <protocol>https</protocol>
+    <method><![CDATA[POST]]></method>
+    <path><![CDATA[/v2/top-picks/rate]]></path>
+    <extension>null</extension>
+    <request base64="true"><![CDATA[UE9TVCAvdjIvdG9wLXBpY2tzL3JhdGUgSFRUUC8xLjENCkhvc3Q6IGFwaS5nb3RpbmRlci5jb20NCmFwcC1zZXNzaW9uLWlkOiBGNEI5MzExQy03NzhCLTQwQjktQjQwMS0xRUQ2Nzg0QjE5NjYNCnBlcnNpc3RlbnQtZGV2aWNlLWlkOiA4MDExQzAyM0Q5Q0M0MzFDQjQ0NURGNkI5NTg3NTU1Ng0KVXNlci1BZ2VudDogVGluZGVyLzExLjAuMCAoaVBob25lOyBpT1MgMTIuNC4xOyBTY2FsZS8yLjAwKQ0Kb3MtdmVyc2lvbjogMTIwMDAwNDAwMDAxDQpWZXJzaW9uLWNvZGU6IDExMDAwMDI0DQphcHAtc2Vzc2lvbi10aW1lLWVsYXBzZWQ6IDE1LjE2MzY1NTk5NjMyMjYzMg0KQ29udGVudC1MZW5ndGg6IDk4DQpYLUF1dGgtVG9rZW46IDdiMGIzZjg0LTcyMDctNDJkYy04NWZjLTk2NzEyNWEzYjFhZg0KeC1zdXBwb3J0ZWQtaW1hZ2UtZm9ybWF0czogd2VicCwganBlZw0KQ29ubmVjdGlvbjogY2xvc2UNCnBsYXRmb3JtOiBpb3MNCnVzZXItc2Vzc2lvbi10aW1lLWVsYXBzZWQ6IDE1LjE1NjA5MzAwMTM2NTY2Mg0KQWNjZXB0LUxhbmd1YWdlOiBlbi11cw0KQWNjZXB0OiAqLyoNCkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbg0KYXBwLXZlcnNpb246IDMwNjcNCnVzZXItc2Vzc2lvbi1pZDogMThGRjkzRjMtMEIwOS00RDYxLTkwODktMTAwQjA5NUEzRDU2DQpYLUxvY2FsLVVUQy1PZmZzZXQ6IC0yNDANCkFjY2VwdC1FbmNvZGluZzogZ3ppcCwgZGVmbGF0ZQ0KDQp7ImlkIjoiZmZhZGRiOWEtNmU0My00ZTVlLTkwNjAtZDE3MDgwYWFiMzJiIiwic19udW1iZXIiOiI4MTY4OTk2OTIiLCJ0b3BfcGlja3MiOiIxIiwidHlwZSI6Imxpa2UifQ==]]></request>
+    <status></status>
+    <responselength></responselength>
+    <mimetype></mimetype>
+    <response base64="true"></response>
+    <comment></comment>
+  </item>
+</items>

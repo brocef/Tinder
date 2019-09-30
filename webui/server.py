@@ -8,7 +8,6 @@ class Server:
         self.app = Flask(__name__, root_path=os.path.dirname(os.path.abspath(__file__)), static_folder='static')
         self.app.add_url_rule('/', endpoint='index', view_func=self.index)
 
-
     def index(self):
         recommendations = []
         recs_folder = os.path.join(os.path.dirname(self.app.root_path), 'Your Recommendations')
